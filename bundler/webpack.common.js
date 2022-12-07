@@ -108,7 +108,19 @@ module.exports = {
                     {
                         filename: 'assets/images/[hash][ext]'
                     }
-                }
+                },
+                {
+                    test: /\.(mp4|ogg)$/, 
+                    use: [
+                        {
+                            loader: "file-loader",
+                            options: {
+                                name: "[name].[ext]",
+                                outputPath: "video"
+                            }
+                        }
+                    ]
+                }               
             ]
     },
     // PATH RESOLVE

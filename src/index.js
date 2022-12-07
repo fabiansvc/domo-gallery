@@ -6,6 +6,7 @@ import Experience from './Experience.js'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
+    
     <Canvas
         flat
         camera={{
@@ -19,4 +20,5 @@ root.render(
         <Experience />
         
     </Canvas>
+    
 )
