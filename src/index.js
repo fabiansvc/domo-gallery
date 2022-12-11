@@ -13,7 +13,7 @@ root.render(
             fov: 45,
             near: 0.1,
             far: 50,
-            position: [0, 1.75, 0]
+            position: [0, 3, 0]
         }}
     >
         <color args={['#201919']} attach="background" />

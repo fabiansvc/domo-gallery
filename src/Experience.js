@@ -24,9 +24,9 @@ export default function Experience() {
             minDistance={0}
             maxDistance={0.5}
             enablePan={false}
-            enableZoom={false}
-            minPolarAngle={Math.PI * 0.5 - 0.5}
-            maxPolarAngle={Math.PI}
+            enableZoom={true}
+            // minPolarAngle={Math.PI * 0.5 - 0.5}
+            // maxPolarAngle={Math.PI}
         />
         <Center>
             <mesh
