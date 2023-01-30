@@ -1,60 +1,68 @@
-import { Center, useGLTF, OrbitControls } from '@react-three/drei'
-import { useState } from 'react'
-import url from "../static/video/university.mp4";
+import { Perf } from 'r3f-perf'
+import { Center, useGLTF, OrbitControls, useTexture, useVideoTexture, useHelper } from '@react-three/drei'
+import url from "../static/video/video360.mp4";
+import { useRef } from 'react';
+import * as THREE from 'three'
+
+// softShadows({
+//     frustum: 3.75,
+//     size: 0.005,
+//     near: 9.5,
+//     samples: 17,
+//     rings: 11
+// })
 
 export default function Experience() {
-    const [video] = useState(() => {
-        const vid = document.createElement("video");
-        vid.src = url;
-        vid.crossOrigin = "Anonymous";
-        vid.loop = true;
-        vid.muted = true;
-        vid.play();
-        return vid;
-    });
+    const directionalLight = useRef();
+    useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
 
-    const { nodes, materials } = useGLTF('./model/domo/domo.glb')
-    console.log(materials);
+    const video = useVideoTexture(url)
+    video.flipY = false
+
+    const galleryModel = useGLTF('./model/gallery/gallery.glb')
+    const bakedGalleryTexture = useTexture('./textures/gallery/bakedGallery.jpg')
+    bakedGalleryTexture.flipY = false
+
+    const domoModel = useGLTF('./model/domo/domo.glb')
+
     return <>
-        <ambientLight intensity={0.5}></ambientLight>
-        <directionalLight color="white" intensity={2.0} position={[2, 1, 2]} />
+        <Perf position="top-left"/>
+
+        <ambientLight intensity={1}/>
+
+        <directionalLight ref={directionalLight}            
+            position={ [-10, 3, 2] }
+            intensity={ 1.5 }
+            castShadow
+            shadow-mapSize={ [ 1024, 1024 ] }
+            shadow-camera-near={ 1 }
+            shadow-camera-far={ 10 }
+            shadow-camera-top={ 5 }
+            shadow-camera-right={ 5 }
+            shadow-camera-bottom={ - 5 }
+            shadow-camera-left={ - 5 } />
 
         <OrbitControls
-            enableDamping={true}
-            minDistance={0}
-            maxDistance={0.5}
-            enablePan={false}
-            enableZoom={true}
-            minPolarAngle={Math.PI * 0.5 - 0.5}
-            maxPolarAngle={Math.PI}
+            enableDamping={false}
+            minDistance={9}
+            maxDistance={10}
+            enablePan={true}
+            enableZoom={false}
+            minPolarAngle={Math.PI * 0.5}
+            maxPolarAngle={Math.PI * 0.5 - 0.5}
         />
         <Center>
-            <mesh
-                geometry={nodes.Floor.geometry}
-                material={materials.MetalGray}
-            >
+            <mesh geometry={galleryModel.nodes.BakedGallery.geometry}>
+                <meshBasicMaterial map={bakedGalleryTexture} />
             </mesh>
-            <mesh
-                geometry={nodes.Top.geometry}
-                material={materials.MetalGray}
-            >
-            </mesh>
-            <mesh
-                geometry={nodes.BottomStructure.geometry}
-                material={materials.MetalRed}
-            >
-            </mesh>
-            <mesh
-                geometry={nodes.Screen.geometry}
-            >
-                <meshBasicMaterial>
-                    <videoTexture flipY={false} attach="map" args={[video]} />
-                </meshBasicMaterial>
-            </mesh>
-            <mesh
-                geometry={nodes.TopStructure.geometry}
-                material={materials.MetalRed}
-            >
+            
+            <mesh geometry={domoModel.nodes.DoorDomo.geometry} material={domoModel.materials.MetalGray} />
+            <mesh geometry={domoModel.nodes.DoorGallery.geometry} material={domoModel.materials.MetalGray} />
+            <mesh receiveShadow geometry={domoModel.nodes.FloorDomo.geometry} material={domoModel.materials.MetalGray} />
+            <mesh geometry={domoModel.nodes.GrayStructure.geometry} material={domoModel.materials.MetalGray} />
+            <mesh geometry={domoModel.nodes.RedStructure.geometry} material={domoModel.materials.MetalRed} />
+            <mesh geometry={domoModel.nodes.Screen.geometry}>
+                <meshBasicMaterial map={video} toneMapped={false} />
             </mesh>
         </Center>
     </>
