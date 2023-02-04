@@ -5,10 +5,7 @@ import Experience from './Experience.js'
 import { ACESFilmicToneMapping, sRGBEncoding } from 'three'
 import { StrictMode } from 'react'
 
-
 const root = ReactDOM.createRoot(document.querySelector('#root'))
-
-
 
 root.render(
     <StrictMode>
