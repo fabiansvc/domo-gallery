@@ -8,17 +8,28 @@ export default function Domo(props) {
     const domoModel = useGLTF('./model/domo/domo.glb')
 
     return <>
-        <group {...props}>
-            <mesh geometry={domoModel.nodes.DoorDomo.geometry} material={domoModel.materials.MetalGray} />
-            <mesh geometry={domoModel.nodes.DoorGallery.geometry} material={domoModel.materials.MetalGray} />
-            <mesh receiveShadow geometry={domoModel.nodes.FloorDomo.geometry} material={domoModel.materials.MetalGray} />
-            <mesh geometry={domoModel.nodes.GrayStructure.geometry} material={domoModel.materials.MetalGray} />
-            <mesh geometry={domoModel.nodes.RedStructure.geometry} material={domoModel.materials.MetalRed} />
-            <mesh geometry={domoModel.nodes.Screen.geometry}>
+        <group {...props} dispose={null}>
+            <mesh
+                geometry={domoModel.nodes.FloorDomo.geometry}
+                material={domoModel.materials.MetalGray}
+                position={[0, -2, 0]}
+            />
+            <mesh
+                geometry={domoModel.nodes.GrayStructureDomo.geometry}
+                material={domoModel.materials.MetalGray}
+                position={[0, -2, 0]}
+            />
+            <mesh
+                geometry={domoModel.nodes.RedStructureDomo.geometry}
+                material={domoModel.materials.MetalRed}
+                position={[0, -2, 0]}
+            />
+            <mesh
+                geometry={domoModel.nodes.ScreenDomo.geometry}
+            >
                 <meshBasicMaterial map={video} toneMapped={false} />
             </mesh>
         </group>
-
     </>
 }
 

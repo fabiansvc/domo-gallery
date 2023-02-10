@@ -5,7 +5,7 @@ export default function Controls () {
     return (
         <OrbitControls
             enableDamping={true}
-            minDistance={9}
+            minDistance={2}
             maxDistance={10}
             enablePan={true}
             enableZoom={true}

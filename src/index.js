@@ -24,10 +24,9 @@ root.render(
                 fov: 45,
                 near: 0.1,
                 far: 50,
-                position: [-10, 0, 0]
+                position: [-10, -2, 0]
             }}
         >
-            <color args={['#201919']} attach="background" />
             <Experience />            
         </Canvas>
     </StrictMode>
