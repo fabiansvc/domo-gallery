@@ -1,59 +1,82 @@
-import { useGLTF, useTexture, useVideoTexture } from "@react-three/drei"
+import { useGLTF } from "@react-three/drei"
+import { useRef, useState } from "react"
 
 export default function Gallery(props) {
+    const video1Ref = useRef()
 
-    const video1 = useVideoTexture("./video/Hoy.mp4", {muted: false, start: false})
-    video1.flipY = false
+    let videoPlayed = true
 
-    const video2 = useVideoTexture("./video/Empanadas.mp4", {muted: false, start: false})
-    video2.flipY = false
+    const [video1] = useState(() => {
+        const vid = document.createElement("video");
+        vid.src = "./video/video1.mp4";
+        vid.crossOrigin = "Anonymous";
+        vid.loop = false;
+        vid.muted = false;
+        vid.pause();
+        return vid;
+    });
 
-    const galleryModel = useGLTF('./model/gallery/gallery.glb')
-    // const bakedGalleryTexture = useTexture('./textures/gallery/bakedGallery.jpg')
-    // bakedGalleryTexture.flipY = false
+    const { nodes, materials } = useGLTF('./model/gallery/gallery.glb')
 
+    const eventHandler = (event) => {
+        if (videoPlayed) {
+            video1.play()
+            videoPlayed = false
+        } else {
+            video1.pause()
+            videoPlayed = true
+        }
+
+        event.stopPropagation()
+    }
     return <>
-        {/* <group {...props}>
-            <mesh geometry={galleryModel.nodes.BakedGallery.geometry}>
-                <meshBasicMaterial map={bakedGalleryTexture} />
-            </mesh>
-        </group> */}
-
         <group {...props}>
-            <mesh geometry={galleryModel.nodes.FloorGallery.geometry} material={galleryModel.materials.wall} />
-            <mesh geometry={galleryModel.nodes.RoomGallery.geometry} material={galleryModel.materials.wall} />
-            <mesh geometry={galleryModel.nodes.TopGallery.geometry} material={galleryModel.materials.wall} />
-            <mesh geometry={galleryModel.nodes.Video1.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.TopGallery.geometry}
+                material={materials.wall}
+            />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.RoomGallery.geometry}
+                material={materials.wall}
+            />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.PortalGallery.geometry}
+                material={materials.wall}
+            />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.WindowsGallery.geometry}
+                material={materials.GlassMaterial}
+            />
+
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.FloorGallery.geometry}
+                material={materials.Floor}
+            />
+            <mesh
+                ref={video1Ref}
+                geometry={nodes.Video6.geometry}
+                onClick={eventHandler}
+                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
+                onPointerLeave={() => { document.body.style.cursor = 'default' }}
+            >
+                <meshBasicMaterial>
+                    <videoTexture flipY={false} attach="map" args={[video1]} />
+                </meshBasicMaterial>
             </mesh>
-            <mesh geometry={galleryModel.nodes.Video2.geometry}>
-                <meshBasicMaterial map={video2} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video3.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video4.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video5.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video6.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video7.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video8.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video9.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
-            <mesh geometry={galleryModel.nodes.Video10.geometry}>
-                <meshBasicMaterial map={video1} toneMapped={false} />
-            </mesh>
+
         </group>
+
+
     </>
 }
 useGLTF.preload('./model/gallery/gallery.glb')

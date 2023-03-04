@@ -5,12 +5,13 @@ export default function Controls () {
     return (
         <OrbitControls
             enableDamping={true}
-            minDistance={2}
-            maxDistance={10}
             enablePan={true}
             enableZoom={true}
+            minDistance={2}
+            maxDistance={8}
             minPolarAngle={Math.PI * 0.5}
-            maxPolarAngle={Math.PI * 0.5 - 0.5}
+            maxPolarAngle={Math.PI * 0.5 - 0.25}
+            target = {[-15, -2, -4]}
         />
     )
 }

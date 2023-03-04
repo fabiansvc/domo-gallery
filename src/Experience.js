@@ -4,19 +4,17 @@ import Domo from './Domo';
 import Controls from './Controls';
 import Environments from './Environments';
 import Debug from './Debug';
-import Avatar from './Avatar';
 
 export default function Experience() {
-
     return <>
         <Debug />
+        <Controls/>
         <Environments />
-        <Controls />
-
         <Center>
+            {/* <Avatar /> */}
             <Gallery />
             <Domo />
-            <Avatar/>
         </Center>
+        
     </>
 }
