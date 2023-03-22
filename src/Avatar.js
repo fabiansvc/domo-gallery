@@ -16,5 +16,5 @@
   // return <>
   //  
   // </>
-}
+// }
 // useGLTF.preload('./model/avatar/avatar.glb')
