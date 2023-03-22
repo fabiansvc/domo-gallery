@@ -9,11 +9,11 @@ export default function Environments () {
     const pointlLight4 = useRef();
    
    return <>
-        <pointLight position={[9, 1, 0]} ref={pointlLight} intensity={0.8}/>
-        <pointLight position={[-11, -1.5, 0]} ref={pointlLight1} intensity={0.8}/>
-        <pointLight position={[-3, -1.5, 0]} ref={pointlLight2} intensity={0.8}/>
-        <pointLight position={[-0, -1.5, -6]} ref={pointlLight3} intensity={0.8}/>
-        <pointLight position={[-0, -1.5, 6]} ref={pointlLight4} intensity={0.8}/>
+        <pointLight position={[9, 1, 0]} ref={pointlLight} intensity={0.4}/>
+        <pointLight position={[-11, -1.5, 0]} ref={pointlLight1} intensity={0.4}/>
+        <pointLight position={[-3, -1.5, 0]} ref={pointlLight2} intensity={0.4}/>
+        <pointLight position={[-0, -1.5, -8]} ref={pointlLight3} intensity={0.4}/>
+        <pointLight position={[-0, -1.5, 8]} ref={pointlLight4} intensity={0.4}/>
         <Sky />
     </>
 }

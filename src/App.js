@@ -2,7 +2,7 @@ import { KeyboardControls, Loader } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Suspense, useRef, useState } from "react"
 import Experience from "./Experience"
-import { ACESFilmicToneMapping, sRGBEncoding } from 'three'
+import { LinearToneMapping, sRGBEncoding } from 'three'
 
 export default function App() {
     const [init, setInit] = useState(false)
@@ -27,7 +27,7 @@ export default function App() {
                         gl={
                             {
                                 antialias: true,
-                                toneMapping: ACESFilmicToneMapping,
+                                toneMapping: LinearToneMapping,
                                 outputEncoding: sRGBEncoding
                             }
                         }
@@ -52,10 +52,10 @@ export default function App() {
 
     return <>
         <div ref={infoRef} className="info">
-            <h1>
-                Dome and Art Gallery Project
+            <h1 style={{fontSize:"xxx-large"}}>
+                Dome & Art Gallery
             </h1>
-            <p>
+            <p style={{fontSize:"x-large"}}>
                 Instructions:
                 <br />
                 Press click to move
@@ -64,14 +64,23 @@ export default function App() {
                 <br />
                 Double click to play videos
             </p>
-            <p style={{fontSize:"medium"}}>
-                This project works only on Desktops
+            <p style={{fontSize:"x-large"}}>
+                Created by:
+                <br />
+                Fabian Stiven Valencia
+                <br />
+                Javier Mauricio Reyes
+                <br />
+                Paola Johanna Rodriguez
             </p>
             <div className='buttonStart'>
                 <button onClick={() => { setInit(true) }}>
                     Start
                 </button>
             </div>
+            <p style={{fontSize:"large"}}>
+                This demo works only on Desktops
+            </p>
         </div>
         {startGame(init)}
     </>

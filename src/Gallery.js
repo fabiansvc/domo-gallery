@@ -1,12 +1,25 @@
-import { useGLTF } from "@react-three/drei"
+import { useGLTF, useTexture } from "@react-three/drei"
+import { useRef } from "react"
 import { useState } from "react"
 
 export default function Gallery(props) {
     //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
 
+    const poster1Ref = useRef()
+    const poster2Ref = useRef()
+    const poster3Ref = useRef()
+    const poster4Ref = useRef()
+    const poster5Ref = useRef()
+    const poster6Ref = useRef()
+    const poster7Ref = useRef()
+    const poster8Ref = useRef()
+    const poster9Ref = useRef()
+    const poster10Ref = useRef()
+
     // Carga Videos
     const videos = []
+
     for (let index = 1; index < 11; index++) {
         const [video] = useState(() => {
             const vid = document.createElement("video");
@@ -17,6 +30,7 @@ export default function Gallery(props) {
             vid.pause();
             return vid;
         });
+
         videos[`video${index}`] = video
     }
 
@@ -27,15 +41,17 @@ export default function Gallery(props) {
 
     const eventHandler = (event) => {
         currentVideo = videos[event.object.name]
+        hiddenPoster(event.object.name, false)
         event.stopPropagation()
         if (!videoPlayed) {
-
             currentVideo.play()
             videosPlayedNow.push(currentVideo)
             pauseVideosPlayedNow(currentVideo)
             videoPlayed = true
         } else {
             currentVideo.pause()
+            hiddenPoster(event.object.name, true)
+
             videoPlayed = false
         }
     }
@@ -46,6 +62,43 @@ export default function Gallery(props) {
                 video.pause()
             }
         })
+    }
+
+    const hiddenPoster = (poster, status) => {
+        switch (poster) {
+            case "video1":
+                poster1Ref.current.visible = status
+                break;
+            case "video2":
+                poster2Ref.current.visible = status
+                break;
+            case "video3":
+                poster3Ref.current.visible = status
+                break;
+            case "video4":
+                poster4Ref.current.visible = status
+                break;
+            case "video5":
+                poster5Ref.current.visible = status
+                break;
+            case "video6":
+                poster6Ref.current.visible = status
+                break;
+            case "video7":
+                poster7Ref.current.visible = status
+                break;
+            case "video8":
+                poster8Ref.current.visible = status
+                break;
+            case "video9":
+                poster9Ref.current.visible = status
+                break;
+            case "video10":
+                poster10Ref.current.visible = status
+                break;
+            default:
+                break;
+        }
     }
 
     return <>
@@ -103,6 +156,7 @@ export default function Gallery(props) {
                 onClick={eventHandler}
                 onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
                 onPointerLeave={() => { document.body.style.cursor = 'default' }}
+
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video2]} />
@@ -202,6 +256,77 @@ export default function Gallery(props) {
                 geometry={nodes.FloorGallery.geometry}
                 material={materials.Floor}
             />
+            <mesh
+                ref={poster7Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster7.geometry}
+                material={materials.poster7}
+            />
+            <mesh
+                ref={poster8Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster8.geometry}
+                material={materials.poster8}
+            />
+            <mesh
+                ref={poster10Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster10.geometry}
+                material={materials.poster10}
+            />
+            <mesh
+                ref={poster9Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster9.geometry}
+                material={materials.poster9}
+            />
+            <mesh
+                ref={poster1Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster1.geometry}
+                material={materials.poster1}
+            />
+            <mesh
+                ref={poster2Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster2.geometry}
+                material={materials.poster2}
+            />
+            <mesh
+                ref={poster3Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster3.geometry}
+                material={materials.poster3}
+            />
+            <mesh
+                ref={poster4Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster4.geometry}
+                material={materials.poster4}
+            />
+            <mesh
+                ref={poster5Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster5.geometry}
+                material={materials.poster5}
+            />
+            <mesh
+                ref={poster6Ref}
+                castShadow
+                receiveShadow
+                geometry={nodes.Poster6.geometry}
+                material={materials.poster6}
+            />
+
         </group>
     </>
 }
