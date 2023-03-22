@@ -1,2 +1,5 @@
 node_modules
-static/video
+build
+public/static/video
+.vercel
+

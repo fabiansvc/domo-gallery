@@ -1,20 +1,24 @@
-import { Center } from '@react-three/drei'
+import { Center, PointerLockControls } from '@react-three/drei'
 import Gallery from './Gallery';
 import Domo from './Domo';
-import Controls from './Controls';
 import Environments from './Environments';
-import Debug from './Debug';
+import { Player } from './Player';
+import { Physics, Debug } from '@react-three/rapier';
+import { Perf } from 'r3f-perf';
+import { PhysicsBodies } from './PhysicsBodies';
 
 export default function Experience() {
     return <>
-        <Debug />
-        <Controls/>
+        {/* <Perf position="top-left" /> */}
         <Environments />
-        <Center>
-            {/* <Avatar /> */}
-            <Gallery />
-            <Domo />
-        </Center>
-        
+        <Physics gravity={[0, - 9.08, 0]}>
+            {/* <Debug />             */}
+            <Center>
+                <Domo />
+                <Gallery />
+            </Center>
+            <PointerLockControls/>
+            <Player />
+        </Physics>
     </>
 }
