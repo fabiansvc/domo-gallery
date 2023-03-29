@@ -5,6 +5,7 @@ import Experience from "./Experience"
 import { LinearToneMapping, sRGBEncoding } from 'three'
 
 export default function Start() {
+    
     const [init, setInit] = useState(false)
     const infoRef = useRef()
     const cameraSettings = {
@@ -14,38 +15,37 @@ export default function Start() {
         position: [11.25, -2.5, -2.25],
         rotation: [0, Math.PI * 0.75, 0]
     }
+    const keyboardControls = [
+        { name: "forward", keys: ["ArrowUp", "w", "W"] },
+        { name: "backward", keys: ["ArrowDown", "s", "S"] },
+        { name: "left", keys: ["ArrowLeft", "a", "A"] },
+        { name: "right", keys: ["ArrowRight", "d", "D"] },
+    ]
     const startGame = (init) => {
         if (init) {
             infoRef.current.style.visibility = 'hidden'
             infoRef.current.style.height = '0px'
-            return <>
-                <KeyboardControls
-                    map={[
-                        { name: "forward", keys: ["ArrowUp", "w", "W"] },
-                        { name: "backward", keys: ["ArrowDown", "s", "S"] },
-                        { name: "left", keys: ["ArrowLeft", "a", "A"] },
-                        { name: "right", keys: ["ArrowRight", "d", "D"] },
-                    ]}>
-                    <Canvas
-                        shadows={true}
-                        dpr={[1, 2]}
-                        flat
-                        gl={
-                            {
-                                antialias: true,
-                                toneMapping: LinearToneMapping,
-                                outputEncoding: sRGBEncoding
+            return (
+                <Suspense fallback={<Loader />}>
+                    <KeyboardControls
+                        map={keyboardControls}>
+                        <Canvas
+                            dpr={[1, 2]}
+                            flat
+                            gl={
+                                {
+                                    antialias: true,
+                                    toneMapping: LinearToneMapping,
+                                    outputEncoding: sRGBEncoding
+                                }
                             }
-                        }
-                        camera={cameraSettings}
-                    >
-                        <Suspense fallback={null}>
+                            camera={cameraSettings}
+                        >
                             <Experience />
-                        </Suspense>
-                    </Canvas>
-                    <Loader />
-                </KeyboardControls>
-            </>
+                        </Canvas>
+                    </KeyboardControls>
+                </Suspense>
+            )
         }
     }
 
@@ -53,7 +53,7 @@ export default function Start() {
         <div ref={infoRef} className="info">
             <div className="card">
                 <h1 style={{ fontSize: "xxx-large" }}>
-                    Dome & Art Gallery
+                    DomoGallery
                 </h1>
                 <p style={{ fontSize: "x-large" }}>
                     Instructions:
@@ -62,7 +62,7 @@ export default function Start() {
                     <br />
                     Press keys W-A-S-D to walk
                     <br />
-                    Double click to play videos
+                    Click to play videos
                 </p>
                 <p style={{ fontSize: "x-large" }}>
                     Created by:

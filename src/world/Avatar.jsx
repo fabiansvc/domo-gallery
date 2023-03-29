@@ -5,9 +5,7 @@ let url = ""
 
 export default function Avatar(props) {
     const group = useRef()
-    url = props.urlAvatar
-
-    const { nodes, materials } = useGLTF(url);
+    const { nodes, materials } = useGLTF(props.urlAvatar);
     const { animations } = useGLTF((props.type == "men")? "/static/animations/menAnimations.glb": "/static/animations/womanAnimations.glb");
     const { actions } = useAnimations(animations, group);
 
@@ -16,6 +14,7 @@ export default function Avatar(props) {
         action.play()
     }, [])
 
+    url = props.urlAvatar
     return (
         <group ref={group} {...props}>
             <group name="Scene">

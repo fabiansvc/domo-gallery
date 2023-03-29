@@ -1,6 +1,6 @@
 {
-  "name": "domo-art-gallery",
-  "version": "1.0.0",
+  "name": "domo-gallery",
+  "version": "0.9.3",
   "description": "",
   "main": "index.js",
   "scripts": {
