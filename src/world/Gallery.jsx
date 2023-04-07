@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function Gallery(props) {
     //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
-   
+
 
     const poster1Ref = useRef()
     const poster2Ref = useRef()
@@ -116,11 +116,13 @@ export default function Gallery(props) {
                 material={materials.FrameMaterial}
             />
             <mesh
+                geometry={nodes.FloorGallery.geometry}
+                material={materials.Floor}
+            />
+            <mesh
                 name="video1"
                 geometry={nodes.Video1.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video1]} />
@@ -130,8 +132,6 @@ export default function Gallery(props) {
                 name="video2"
                 geometry={nodes.Video2.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video2]} />
@@ -141,8 +141,6 @@ export default function Gallery(props) {
                 name="video3"
                 geometry={nodes.Video3.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video3]} />
@@ -152,8 +150,6 @@ export default function Gallery(props) {
                 name="video4"
                 geometry={nodes.Video4.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video4]} />
@@ -163,8 +159,6 @@ export default function Gallery(props) {
                 name="video5"
                 geometry={nodes.Video5.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video5]} />
@@ -174,8 +168,6 @@ export default function Gallery(props) {
                 name="video6"
                 geometry={nodes.Video6.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video6]} />
@@ -185,8 +177,6 @@ export default function Gallery(props) {
                 name="video7"
                 geometry={nodes.Video7.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video7]} />
@@ -196,8 +186,6 @@ export default function Gallery(props) {
                 name="video8"
                 geometry={nodes.Video8.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video8]} />
@@ -207,8 +195,6 @@ export default function Gallery(props) {
                 name="video9"
                 geometry={nodes.Video9.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video9]} />
@@ -218,17 +204,12 @@ export default function Gallery(props) {
                 name="video10"
                 geometry={nodes.Video10.geometry}
                 onClick={eventHandler}
-                onPointerEnter={() => { document.body.style.cursor = 'pointer' }}
-                onPointerLeave={() => { document.body.style.cursor = 'default' }}
             >
                 <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[videos.video10]} />
                 </meshBasicMaterial>
             </mesh>
-            <mesh
-                geometry={nodes.FloorGallery.geometry}
-                material={materials.Floor}
-            />
+
             <mesh
                 ref={poster7Ref}
                 geometry={nodes.Poster7.geometry}

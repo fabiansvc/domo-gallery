@@ -5,7 +5,7 @@ import Experience from "./Experience"
 import { LinearToneMapping, sRGBEncoding } from 'three'
 
 export default function Start() {
-    
+
     const [init, setInit] = useState(false)
     const infoRef = useRef()
     const cameraSettings = {
@@ -26,25 +26,33 @@ export default function Start() {
             infoRef.current.style.visibility = 'hidden'
             infoRef.current.style.height = '0px'
             return (
-                <Suspense fallback={<Loader />}>
-                    <KeyboardControls
-                        map={keyboardControls}>
-                        <Canvas
-                            dpr={[1, 2]}
-                            flat
-                            gl={
-                                {
-                                    antialias: true,
-                                    toneMapping: LinearToneMapping,
-                                    outputEncoding: sRGBEncoding
+                <>
+                    <Suspense fallback={<Loader />}>
+                        <main className="app"  >
+                            <section className='hero'>
+                                <h1 style={{ color: "black" }}>O</h1>
+                            </section>
+                        </main>
+                        <KeyboardControls
+                            map={keyboardControls}>
+                            <Canvas
+                                className='canvas'
+                                dpr={[1, 2]}
+                                flat
+                                gl={
+                                    {
+                                        antialias: true,
+                                        toneMapping: LinearToneMapping,
+                                        outputEncoding: sRGBEncoding
+                                    }
                                 }
-                            }
-                            camera={cameraSettings}
-                        >
-                            <Experience />
-                        </Canvas>
-                    </KeyboardControls>
-                </Suspense>
+                                camera={cameraSettings}
+                            >
+                                <Experience />
+                            </Canvas>
+                        </KeyboardControls>
+                    </Suspense>
+                </>
             )
         }
     }
@@ -55,16 +63,16 @@ export default function Start() {
                 <h1 style={{ fontSize: "xxx-large" }}>
                     DomoGallery
                 </h1>
-                <p style={{ fontSize: "x-large" }}>
-                    Instructions:
+                <p style={{ fontSize: "xx-large" }}>
+                    Instructions
                     <br />
-                    Press click to move
+                    Press click to move around the world
                     <br />
-                    Press keys W-A-S-D to walk
+                    Press keys W-A-S-D to walk around the world
                     <br />
-                    Click to play videos
+                    Press click to play videos
                 </p>
-                <p style={{ fontSize: "x-large" }}>
+                <p style={{ fontSize: "xx-large" }}>
                     Created by:
                     <br />
                     Fabian Stiven Valencia Cordoba
@@ -74,7 +82,7 @@ export default function Start() {
                     Paola Johanna Rodriguez Ph.D
                 </p>
 
-                <p style={{ fontSize: "x-large" }}>
+                <p style={{ fontSize: "xx-large" }}>
                     Universidad del Valle
                 </p>
                 <div className='buttonStart'>
@@ -82,7 +90,7 @@ export default function Start() {
                         Start
                     </button>
                 </div>
-                <p style={{ fontSize: "large" }}>
+                <p style={{ fontSize: "x-large" }}>
                     This demo works only on Desktops
                 </p>
             </div>
