@@ -57,42 +57,55 @@ export default function Start() {
         }
     }
 
-    return <>
-        <div ref={infoRef} className="info">
-            <div className="card">
-                <h1 style={{ fontSize: "xxx-large" }}>
-                    DomoGallery
-                </h1>
-                <p style={{ fontSize: "xx-large" }}>
-                    Instructions
-                    <br />
-                    Press click to move around the world
-                    <br />
-                    Press keys W-A-S-D to walk around the world
-                    <br />
-                    Press click to play videos
+    const isDesktop = () => {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+            return (
+                <p className="note">
+                    This demo works only on Desktops
                 </p>
-                <p style={{ fontSize: "xx-large" }}>
-                    Created by:
-                    <br />
-                    Fabian Stiven Valencia Cordoba
-                    <br />
-                    Javier Mauricio Reyes Ph.D
-                    <br />
-                    Paola Johanna Rodriguez Ph.D
-                </p>
-
-                <p style={{ fontSize: "xx-large" }}>
-                    Universidad del Valle
-                </p>
+            )
+        } else {
+            return (
                 <div className='buttonStart'>
                     <button onClick={() => { setInit(true) }}>
                         Start
                     </button>
                 </div>
-                <p style={{ fontSize: "x-large" }}>
-                    This demo works only on Desktops
+            )
+        }
+    }
+
+    return <>
+        <div ref={infoRef} className="info">
+            <div className="card">
+                <img className="logo" src={"/static/favicon.png"} alt="logo" />
+                <h1>
+                    DomoGallery
+                </h1>
+                <p>
+                    Instructions:
+                    <br />
+                    Press click to move around
+                    <br />
+                    Press keys W-A-S-D to walk
+                    <br />
+                    Press click to play videos
                 </p>
+                <p>
+                    Created by:
+                    <br />
+                    Fabian Stiven Valencia
+                    <br />
+                    Javier Mauricio Reyes Ph.D
+                    <br />
+                    Paola Johanna Rodriguez Ph.D
+                </p>
+                <p>
+                    Universidad del Valle
+                </p>
+
+                {isDesktop()}
+
             </div>
         </div>
         {startGame(init)}

@@ -21,12 +21,16 @@ body,
 }
 
 .canvas {
+    touch-action: none;
     position: fixed !important;
     inset: 0 !important;
 }
 
 
 .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: url("/public/static/background/DomeGallery.jpg");
     background-size: cover;
     width: 100%;
@@ -34,12 +38,13 @@ body,
 }
 
 .card {
-    display: grid;
-    margin-left: 25%;
-    width: 50%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 80%;
+    padding: 2% 0% 2% 0%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -49,12 +54,13 @@ p {
     color: white;
 }
 
-p {
-    line-height: 150%;
+h1 {
+    font-size: xxx-large;
 }
 
-.buttonStart {
-    padding: 0% 40% 0% 40%;
+p {
+    font-size: xx-large;
+    line-height: 150%;
 }
 
 button {
@@ -68,6 +74,7 @@ button {
     font-size: xx-large;
     text-decoration: none;
     text-shadow: 0px 1px 0px #854629;
+    width: 100%;
 }
 
 button:hover {
@@ -96,4 +103,31 @@ button:active {
     left: 50%;
     display: flex;
     flex-direction: column;
+}
+
+.logo {
+    height: 15%;
+}
+
+@media screen and (max-width: 1440px) {
+    h1 {
+        font-size: xx-large;
+    }
+
+    p {
+        font-size: x-large;
+        line-height: 150%;
+    }
+
+    .card {
+        width: 80%;
+        height: 90%;
+        padding: 4%;
+    }
+
+    .note {
+        font-style: italic;
+        text-decoration: underline solid rgb(255, 255, 255);
+    }
+
 }
