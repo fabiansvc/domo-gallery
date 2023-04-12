@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { useKeyboardControls } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
-import { CuboidCollider, RigidBody, vec3 } from "@react-three/rapier"
+import { CuboidCollider, RigidBody } from "@react-three/rapier"
 import { useRef, useState } from "react"
 
 export default function Player() {
@@ -36,17 +36,13 @@ export default function Player() {
     useFrame((state, delta) => {
         const { forward, backward, left, right } = get()
         if (!isCollide && (forward || backward || left || right)) {
-
-            // calculate direction
             state.camera.getWorldDirection(walkDirection)
             walkDirection.y = 0
             walkDirection.normalize()
             walkDirection.applyAxisAngle(rotateAngle, directionOffset(forward, backward, left, right))
 
-            // run/walk velocity
             const velocity = walkVelocity
 
-            // move model, pyshycs body & state.camera
             moveX = walkDirection.x * velocity * delta
             moveY = walkDirection.y * velocity * delta
             moveZ = walkDirection.z * velocity * delta
