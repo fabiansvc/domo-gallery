@@ -2,7 +2,7 @@ import { KeyboardControls, Loader } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Suspense, useRef, useState } from "react"
 import Experience from "./Experience"
-import { LinearToneMapping, sRGBEncoding } from 'three'
+import { ACESFilmicToneMapping, sRGBEncoding } from 'three'
 
 export default function Start() {
 
@@ -30,7 +30,7 @@ export default function Start() {
                     <Suspense fallback={<Loader />}>
                         <main className="app"  >
                             <section className='hero'>
-                                <h1 style={{ color: "black" }}>O</h1>
+                                <img className="cursor" src={"/static/textures/cursor/cursor.png"} alt="cursor"/>
                             </section>
                         </main>
                         <KeyboardControls
@@ -42,8 +42,9 @@ export default function Start() {
                                 gl={
                                     {
                                         antialias: true,
-                                        toneMapping: LinearToneMapping,
-                                        outputEncoding: sRGBEncoding
+                                        outputEncoding: sRGBEncoding,
+                                        toneMapping: ACESFilmicToneMapping                            
+                         
                                     }
                                 }
                                 camera={cameraSettings}
