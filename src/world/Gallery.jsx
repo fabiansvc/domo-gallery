@@ -6,7 +6,6 @@ export default function Gallery(props) {
     //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
 
-
     const poster1Ref = useRef()
     const poster2Ref = useRef()
     const poster3Ref = useRef()
