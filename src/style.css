@@ -41,7 +41,7 @@ body,
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 80%;
+    height: 100%;
     padding: 2% 0% 2% 0%;
     align-items: center;
     justify-content: space-between;
@@ -121,7 +121,7 @@ button:active {
 
     .card {
         width: 80%;
-        height: 90%;
+        height: 100%;
         padding: 4%;
     }
 
