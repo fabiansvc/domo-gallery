@@ -30,7 +30,7 @@ export default function Start() {
                     <Suspense fallback={<Loader />}>
                         <main className="app"  >
                             <section className='hero'>
-                                <img className="cursor" src={"/static/textures/cursor/cursor.png"} alt="cursor"/>
+                                <img className="cursor" src={"/static/textures/cursor/cursor.png"} alt="cursor" />
                             </section>
                         </main>
                         <KeyboardControls
@@ -43,8 +43,8 @@ export default function Start() {
                                     {
                                         antialias: true,
                                         outputEncoding: sRGBEncoding,
-                                        toneMapping: ACESFilmicToneMapping                            
-                         
+                                        toneMapping: ACESFilmicToneMapping
+
                                     }
                                 }
                                 camera={cameraSettings}
@@ -58,11 +58,15 @@ export default function Start() {
         }
     }
 
+    const isMobileDevice = () => {
+        return
+    }
+
     const isDesktop = () => {
-        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+        if (/Android|webOS|iPad|Tablet|PlayBook|Kindle|Windows Phone|IEMobile|Surface|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari|Windows Phone|SymbianOS/i.test(navigator.userAgent)) {
             return (
                 <p className="note">
-                    This demo works only on Desktops
+                    This demo works only on PC Desktops
                 </p>
             )
         } else {
