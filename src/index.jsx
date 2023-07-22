@@ -1,13 +1,16 @@
-import './style.css'
+import './index.css'
 import ReactDOM from 'react-dom/client'
-import { StrictMode } from 'react'
-import Start from './Start'
+import Experience from './Experience'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
-    <StrictMode>
-        <Start />
-    </StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <Experience />
+        </BrowserRouter>
+    </React.StrictMode>
 )
 

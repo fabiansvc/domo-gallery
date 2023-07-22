@@ -1,10 +1,10 @@
 {
   "name": "domo-gallery",
-  "version": "0.9.5",
+  "version": "0.1",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "concurrently \"react-scripts start\" \"node server.js\"",
     "build": "react-scripts build",
     "deploy": "vercel --prod"
   },
@@ -12,17 +12,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@react-three/drei": "^9.57.3",
-    "@react-three/fiber": "^8.9.1",
-    "@react-three/rapier": "^0.14.0",
-    "leva": "^0.9.34",
-    "r3f-perf": "^7.1.2",
+    "@react-three/drei": "^9.77.1",
+    "@react-three/fiber": "^8.13.3",
+    "@react-three/rapier": "^1.1.1",
+    "concurrently": "^8.2.0",
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "^5.0.1",
-    "three": "^0.150.1",
-    "vercel": "^28.17.0",
-    "zustand": "^4.3.6"
+    "three": "^0.153.0",
+    "ytdl-core": "^4.11.5"
   },
   "browserslist": {
     "production": [

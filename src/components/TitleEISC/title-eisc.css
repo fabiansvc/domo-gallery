@@ -1,0 +1,23 @@
+.container-title-eisc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.logo-univalle {
+    margin-top: 2rem;
+    width: 10rem;
+    height: 10rem;
+}
+
+.span-title {
+    margin-top: 2rem;
+    color: #ff0000 ;
+    font-size: xxx-large;
+    font-weight: bolder;
+}

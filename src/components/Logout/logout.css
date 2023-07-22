@@ -1,0 +1,30 @@
+.container-logout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right:0.5rem;
+  width: 100wh;
+}
+
+.button-logout {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-logout:hover {
+  transform: scale(1.1);
+}
+
+.icon-logout {
+  font-size: 2.5rem;
+  padding: 0.5rem 0.5rem;
+  color: rgb(32, 32, 32);
+  transition: all 0.3s ease;
+}
+
