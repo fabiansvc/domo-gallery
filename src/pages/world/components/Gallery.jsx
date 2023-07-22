@@ -5,7 +5,6 @@ import { useState } from "react"
 export default function Gallery(props) {
     //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
-    const expressUrl = "http://localhost:8080/";
 
     const videoUrl = [
         "https://youtu.be/17wtQC14jIY",
@@ -37,11 +36,11 @@ export default function Gallery(props) {
     videoUrl.map((url, index) => {
         const [video] = useState(() => {
             const vid = document.createElement("video");
-            vid.src = `${expressUrl}?url=${url}`;
+            vid.src = videoUrl;
             vid.crossOrigin = "Anonymous";
             vid.loop = false;
             vid.muted = true;
-            vid.pause();
+            vid.load();
             return vid;
         });
         videos[`video${index + 1}`] = video
