@@ -1,10 +1,10 @@
 import { useGLTF } from "@react-three/drei";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VideoTexture } from "three";
 
 const Domo = () => {
     const { nodes, materials } = useGLTF('/static/model/domo/domo.glb')
-    const videoUrl = "https://ff80e3f1e1ebb6463d7dff6aabe20f79d1cbd598ea3c0ee48652d32-apidata.googleusercontent.com/download/storage/v1/b/domogallery/o/video180.mp4?jk=AYvHSRG0ELR8P7rlVxc6CesHINv_81Fx-vW2Ef3vUODm_aSf6YdcjrrqOBdOISjTUVPPjQ2IaUZ6D5Rt_YvlAwDXx_zp7qA1e7_NGC45kzja-S_HO2l9_DDJrS7Me17SbsKVJ3dZR9VsoFcP8KTiJHXaA9oFWBx5txLxfZbILlVO4Azuxbe_SdrqWqMciraULYXwtnXnEMt4H7l4-qlN1Z82ocF5JWkRzrsjCkn1PK00KtPMtQVWmca2-I_Gf3eX2HD7qw6Cobc-aN9wXeqM1_hl5ztNYJ2QedDTkASQ6K9agN3jETOMYsPMkPNUVdKGb0ix5oKhHfVl9000Ric1b5VcV7ydry6hYS1MryMv1Woq5pFX8DMbo6dAHGcbk5HMbc7-XLstFzE2i2hrzP2afHM0PpwImbrmNhwZTd_iB1herHZEBdvl_v5iTWD10NQJ9bQWqxM0x8XuAIwT8IFPr9xr8IlRCyDI25maJ_CyUcIPI3spKNXjYj-_FcwaoTdgkC4cGSO1KNkYOl7YlwGT8T-LMOyijCpcdeBNKoIEGCn6HbRbZBprem4NlrroG3J86B6JKExdpJq-uUpshouWhlMzEYsFBtuHTEe5ywn102cv_ypQDdnHV4X27Cx0Ng0a6VkbVPf3IIY48S2hvG8aNqrqyANgk7UySP9ywFW7s3ncZGpLeWRacBsnLLo8IRYcnCOEShNCr-5MzZ1sjTS2ui1wMv_pjPI1gRMxxcPMWVg3sHGeTSBNF_6l0Gjv3n1xtZOkljn9TARdEBjKr7UemsNp9f_PTlnjR_kH3LqUxU3lEcCP0nIlqmsojLKdALEUtZc22lOjPjkjL8GjtNi7SFP-ZJCc3y1uLFOvEMRow3YrqVRSOI9p0uzAcGzKlr1FWvBgdpNz4NU2OLQHf7LBGyortCgTjxB6WZGnqdoQkSs7X83KUlZHJ41OjuaX_qSyJZFJJ95_cwiX9yAooV853YjJ2CmCtE9L7rmHaTW7YUFthfuKdlBMdmXg9cPxh2abFMwbr-St04U1c8raIv2TNseResinvB0gbgdMmwdxPX7KlJa0ld9iENlkQGmrTwbfKlYntOvox_7z2wnQb1VJD4ONWLzAMKvm1q0XgdLQs2q_TkuIXOSCY5dl2l_psEHAtSpZmA-ifevWbUjghLFLdOKmk4sukudwJubEvlvzeNBVy0gfuwb8DtmG9BhYdLbOIgk4nPrNm0hGfdKoWVagvdg9KUaKmF6H-88kGSYI6DQ5BtxDHoo3H57mGqA2RossrOc&isca=1";
+    const videoUrl ="https://ffc9a5337e41bc5b8bb9a7e7c2f59fdc4882d45dd8b2a00acc709d0-apidata.googleusercontent.com/download/storage/v1/b/domogallery/o/video180.mp4?jk=AYvHSRHYjljr5tzJ03gJWw3SSYyPcLZnq_MMUP70BXRHlfiRuyp6njWHnPcSJ9TzbF4szjBDZFkadcfyhRPHgAPk-t3HfBODZD0HSqKXydXyqOMItPaWhEXdPK1RVd5FPc3mmpucINGxF5p5v5e8qRLskFbP_kEW3vwPNRyYYoo4u5kK4R45sXSb1Cd8IJJXTRtvRkhdk05bn9VK0sao2S__wMR7fJb5isPlrNtCu8XyqESkSKNYEpQTfTXQRO9KAv4J07OWRtbYnFAt-kjkelTSy2lctmL0hfJbzdFJCDvZ8uQkGqYQI4JqBhqdsYDZl04VVavVkCjsX0dxovXpic7m0pN9x8jFj27mDsNWbz5sBZirHoGKAvwAZeOHuZJ1-fuQONo3YIe3vajZC_pFXiZr6y_Uva_HKA6btaT6td9Cnc8wGvJIm-Uvn8iiSYvZjBlLrzJbvqzkn5gAYWgtnaJWHUkRT6CuZVA0GlLacN9O5eS4tndhodLSjdosEjcJF5por7M7pstJ4_jUufq_RXT8WQwubTa584cBpSjBHp5ykrlTUe-K-1mKu9o3Xw5bM--rxNblkhwYpv611s7WLWEFVHwct8wZWqjYEl_HfOX-xI_NLDDl_N19hYK8GENtcJnZRCuBG1D6B0_Nk4oGZDkD_dTSwbD-skYAKTgahB6TYRLSMKYtFemKiDOaqK9duQ-cnaST5QVIi6FVOgNpNkmsxhUGFcyVW-GQPxhvOU5V4LBJnNaUr27K2bwrxUQJT7rILVbBcoClaHoIqk6vHZl_UxDfo6rMkafydZzGnwwe1oj6ytODIGhjQbUXDNgRIkqtd4s3DL2wkuLw_7xDAusRfyB8aQH_TcUNniUes9tq1-LkjrUehsHLfAG8hmODigKdHgaeqD2XszKQnwwGdoIjusQSGVWTBrV8QZIqS2TYNSu39CJYnI2IrIrTw5w5VGhlb0HTumlQROcXjVwEdGYVie1b2J1c7w4WbQostCZb6dsLjqomUeXyLZfagTDBAkdoqWkURCxt7IeSdDs71GDOvdfcdsbFATgct5ZK_4YM72ittrvrIVB5tCkfaGlWzMOZQ-Hop5_oK22jxQgj4TjhzhUgXHFzMSJZ-rr42nKk0-gfaFSYS7acLB99m0Cts8p1a9He9An4m9r9Ah7typy2R2OJfUlE_k8oPPShVOWj65rPdY7ANv7I-aJCHdVEAkdqvHcq1OyecGy4CRJ4yoNryAhDTkPK2IKrD08cxLYGXgQOSIhgk5cTz4fFkKVcwiM&isca=1"
 
     const [video] = useState(() => {
         const vid = document.createElement('video');
@@ -15,9 +15,6 @@ const Domo = () => {
         vid.play();
         return vid;
     });
-
-    const videoTexture = useRef(new VideoTexture(video));
-    videoTexture.current.flipY = false;
 
     return (
         <group dispose={null}>
@@ -52,7 +49,9 @@ const Domo = () => {
                 geometry={nodes.ScreenDomo.geometry}
                 material={materials.MetalGray}
             >
-                <meshStandardMaterial map={videoTexture.current}/>
+                  <meshStandardMaterial>
+                    <videoTexture flipY={false} attach="map" args={[video]} />
+                </meshStandardMaterial>
             </mesh>
         </group>
     )
