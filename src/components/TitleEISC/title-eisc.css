@@ -21,3 +21,10 @@
     font-size: xxx-large;
     font-weight: bolder;
 }
+
+/* Responsive styles */
+@media screen and (max-width: 480px) {
+    .span-title {
+        font-size: xx-large;
+    }
+}
