@@ -62,3 +62,33 @@
 .button-start:focus {
     background-color: #ff0000;
 }
+
+.note {
+    color: white;
+    font-size: large;
+    line-height: 1.5;
+    text-align: center;
+}	
+
+/* Responsive styles */
+@media screen and (max-width: 480px) {
+    .card {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+    }
+
+    .authors {
+        font-size: larger;
+    }
+}
+
+/* Responsive styles */
+@media screen and (min-width: 480px) and (max-width: 1080px) {
+    .card {
+        width: 80%;
+        height: 80%;
+        padding: 2rem;
+    }
+}   
+
