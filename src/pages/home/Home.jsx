@@ -17,7 +17,7 @@ const Home = () => {
                 <button
                     role="button"
                     className="button-start"
-                    onClick={() => window.location.assign('/domo-gallery') }
+                    onClick={() => navigate('/domo-gallery') }
                 >
                     Start
                 </button>
