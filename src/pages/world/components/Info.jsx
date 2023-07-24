@@ -1,7 +1,7 @@
 import { useTexture } from "@react-three/drei"
 
 const Info = (props) => {
-    const infoMaterial = useTexture('/static/textures/info/info.jpg')
+    const infoMaterial = useTexture('/static/textures/info/info-no-authors.jpg')
     return (
         <mesh position={props.position} rotation={props.rotation}>
             <planeGeometry args={props.args} />

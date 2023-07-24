@@ -1,6 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
-import { VideoTexture } from "three";
+import { useState } from "react";
 
 const Domo = () => {
     const { nodes, materials } = useGLTF('/static/model/domo/domo.glb')
