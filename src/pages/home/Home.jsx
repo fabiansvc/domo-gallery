@@ -1,10 +1,7 @@
 import TitleEISC from "../../components/TitleEISC/TitleEISC"
 import "./home.css"
-import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-    const navigate = useNavigate()
-
     const isDesktop = () => {
         if (/Android|webOS|iPad|Tablet|PlayBook|Kindle|Windows Phone|IEMobile|Surface|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari|Windows Phone|SymbianOS/i.test(navigator.userAgent)) {
             return (
@@ -17,7 +14,7 @@ const Home = () => {
                 <button
                     role="button"
                     className="button-start"
-                    onClick={() => navigate('/domo-gallery') }
+                    onClick={() => window.location.href = "/domo-gallery"}
                 >
                     Start
                 </button>

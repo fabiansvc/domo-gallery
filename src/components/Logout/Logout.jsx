@@ -1,13 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import "./logout.css";
 import { TbLogout } from "react-icons/tb";
 
 const Logout = () => {
-    const navigate = useNavigate();
 
-    const handleLogout = (e) => {
-        e.preventDefault();
-        navigate('/');
+    const handleLogout = () => {
+        window.location.href = "/"
     };
 
     return (
@@ -18,7 +15,7 @@ const Logout = () => {
                 aria-label="Cerrar sesión"
                 title="Cerrar sesión"
                 className="button-logout"
-                onClick={(e) => { handleLogout(e) }} 
+                onClick={(e) => { handleLogout() }} 
             >
                 <TbLogout className="icon-logout"/>
             </button>
