@@ -17,7 +17,7 @@ const Home = () => {
                 <button
                     role="button"
                     className="button-start"
-                    onClick={() => window.location.assign('/domo-gallery') }
+                    onClick={() => navigate('/domo-gallery') }
                 >
                     Start
                 </button>
@@ -30,13 +30,14 @@ const Home = () => {
             <div className="card">
                 <TitleEISC />
                 <span className="authors">
-                    Created by:
+                    {/* Created by:
                     <br />
                     Fabian Stiven Valencia C.
                     <br />
                     Javier Mauricio Reyes V. Ph.D
                     <br />
-                    Paola Johanna Rodriguez C. Ph.D
+                    Paola Johanna Rodriguez C. Ph.D */}
+                    Press start to access 
                 </span>
                 {isDesktop()}
             </div>

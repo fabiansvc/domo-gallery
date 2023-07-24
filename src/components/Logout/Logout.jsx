@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import "./logout.css";
 import { TbLogout } from "react-icons/tb";
 
 const Logout = () => {
+    const navigate = useNavigate();
 
     const handleLogout = (e) => {
         e.preventDefault();
-        window.location.assign('/');
+        navigate('/');
     };
 
     return (
