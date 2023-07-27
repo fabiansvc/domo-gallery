@@ -11,9 +11,12 @@ const Domo = () => {
         vid.loop = true;
         vid.muted = true;
         vid.crossOrigin = 'anonymous';
+        vid.preload = 'auto';
         vid.play();
         return vid;
     });
+
+
 
     return (
         <group dispose={null}>

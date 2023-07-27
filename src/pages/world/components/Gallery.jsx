@@ -40,6 +40,8 @@ export default function Gallery(props) {
             vid.loop = true;
             vid.muted = true;
             vid.crossOrigin = 'anonymous';
+            vid.preload = 'auto';
+            vid.load();
             return vid;
         });
         videos[`video${index + 1}`] = video
