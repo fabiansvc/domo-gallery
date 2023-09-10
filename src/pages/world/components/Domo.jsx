@@ -1,11 +1,11 @@
 import { useGLTF } from "@react-three/drei";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const Domo = () => {
     const { nodes, materials } = useGLTF('/static/model/domo/domo.glb')
-    const videoUrl ="https://storage.googleapis.com/domogallery/video180.mp4"
+    const videoUrl = useMemo(()=> "https://storage.googleapis.com/domogallery/video180.mp4") 
 
-    const [video] = useState(() => {
+    const video = useMemo(() => {
         const vid = document.createElement('video');
         vid.src = videoUrl;
         vid.loop = true;
@@ -16,44 +16,25 @@ const Domo = () => {
         return vid;
     });
 
-
-
     return (
         <group dispose={null}>
-            <mesh
-                geometry={nodes.FloorDomo.geometry}
-                material={materials.MetalGray}
-                position={[0, -2, 0]}
-            />
-            <mesh
-                geometry={nodes.GrayStructureDomo.geometry}
-                material={materials.MetalGray}
-                position={[0, -2, 0]}
-            />
-            <mesh
-                geometry={nodes.RedStructureDomo.geometry}
-                material={materials.MetalRed}
-                position={[0, -2, 0]}
-            />
-            <mesh
-                geometry={nodes.WallDomo.geometry}
-                material={materials.MetalGray}
-            />
-            <mesh
-                geometry={nodes.StreetOut.geometry}
-                material={materials.MetalRed}
-            />
-            <mesh
-                geometry={nodes.StreetInner.geometry}
-                material={materials.MetalRed}
-            />
+            <group>
+                <mesh
+                    geometry={nodes.Domo_1.geometry}
+                    material={materials.MetalGray}
+                />
+                <mesh
+                    geometry={nodes.Domo_2.geometry}
+                    material={materials.MetalRed}
+                />
+            </group>
             <mesh
                 geometry={nodes.ScreenDomo.geometry}
-                material={materials.MetalGray}
+                material={nodes.ScreenDomo.material}
             >
-                  <meshStandardMaterial>
+                <meshBasicMaterial>
                     <videoTexture flipY={false} attach="map" args={[video]} />
-                </meshStandardMaterial>
+                </meshBasicMaterial>
             </mesh>
         </group>
     )

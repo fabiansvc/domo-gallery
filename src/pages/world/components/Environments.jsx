@@ -1,4 +1,4 @@
-import { Sky } from "@react-three/drei"
+import { Sky, Stars } from "@react-three/drei"
 
 const Environments = () => {
 

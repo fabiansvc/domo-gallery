@@ -27,14 +27,13 @@ const Home = () => {
             <div className="card">
                 <TitleEISC />
                 <span className="authors">
-                    {/* Created by:
+                    Created by:
                     <br />
                     Fabian Stiven Valencia C.
                     <br />
                     Javier Mauricio Reyes V. Ph.D
                     <br />
-                    Paola Johanna Rodriguez C. Ph.D */}
-                    Press start to access 
+                    Paola Johanna Rodriguez C. Ph.D
                 </span>
                 {isDesktop()}
             </div>
