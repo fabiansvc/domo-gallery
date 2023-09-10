@@ -29,10 +29,10 @@ export default function Gallery() {
             "https://storage.googleapis.com/domogallery/video9.mp4",
             "https://storage.googleapis.com/domogallery/video10.mp4"
         ];
-    })
+    }, [])
 
     // Carga Videos
-    const videos = useMemo(()=>[])
+    const videos = useMemo(()=>[], [])
 
     videoUrl.map((url, index) => {
         const video = useMemo(() => {
@@ -51,7 +51,7 @@ export default function Gallery() {
     // Evento videos
     let currentVideo = null
     let videoPlayed = false
-    let videosPlayedNow = []
+    let videosPlayedNow = useMemo(()=>[], [])
 
     const eventHandler = (event) => {
         currentVideo = videos[event.object.name]

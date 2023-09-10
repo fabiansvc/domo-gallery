@@ -1,9 +1,9 @@
 import { useGLTF } from "@react-three/drei";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 const Domo = () => {
     const { nodes, materials } = useGLTF('/static/model/domo/domo.glb')
-    const videoUrl = useMemo(()=> "https://storage.googleapis.com/domogallery/video180.mp4") 
+    const videoUrl = useMemo(()=> "https://storage.googleapis.com/domogallery/video180.mp4", []) 
 
     const video = useMemo(() => {
         const vid = document.createElement('video');
@@ -12,10 +12,18 @@ const Domo = () => {
         vid.muted = true;
         vid.crossOrigin = 'anonymous';
         vid.preload = 'auto';
-        vid.play();
+        vid.load();
         return vid;
-    });
+    }, []);
 
+    useEffect(() => {
+        video.play();
+        return () => {
+            video.pause();
+            video.currentTime = 0;
+        };
+    }, [video]);
+    
     return (
         <group dispose={null}>
             <group>
