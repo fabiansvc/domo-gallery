@@ -16,26 +16,24 @@ export default function Gallery() {
     //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
 
-    const videoUrl = useMemo(() => {
-        return [
-            "https://storage.googleapis.com/domogallery/video1.mp4",
-            "https://storage.googleapis.com/domogallery/video2.mp4",
-            "https://storage.googleapis.com/domogallery/video3.mp4",
-            "https://storage.googleapis.com/domogallery/video4.mp4",
-            "https://storage.googleapis.com/domogallery/video5.mp4",
-            "https://storage.googleapis.com/domogallery/video6.mp4",
-            "https://storage.googleapis.com/domogallery/video7.mp4",
-            "https://storage.googleapis.com/domogallery/video8.mp4",
-            "https://storage.googleapis.com/domogallery/video9.mp4",
-            "https://storage.googleapis.com/domogallery/video10.mp4"
-        ];
-    }, [])
+    const videoUrl = [
+        "https://storage.googleapis.com/domogallery/video1.mp4",
+        "https://storage.googleapis.com/domogallery/video2.mp4",
+        "https://storage.googleapis.com/domogallery/video3.mp4",
+        "https://storage.googleapis.com/domogallery/video4.mp4",
+        "https://storage.googleapis.com/domogallery/video5.mp4",
+        "https://storage.googleapis.com/domogallery/video6.mp4",
+        "https://storage.googleapis.com/domogallery/video7.mp4",
+        "https://storage.googleapis.com/domogallery/video8.mp4",
+        "https://storage.googleapis.com/domogallery/video9.mp4",
+        "https://storage.googleapis.com/domogallery/video10.mp4"
+    ]
 
     // Carga Videos
-    const videos = useMemo(()=>[], [])
+    const videos = useMemo(() => [], [])
 
     videoUrl.map((url, index) => {
-        const video = useMemo(() => {
+        const [video] = useState(() => {
             const vid = document.createElement("video");
             vid.src = url;
             vid.loop = true;
@@ -51,7 +49,7 @@ export default function Gallery() {
     // Evento videos
     let currentVideo = null
     let videoPlayed = false
-    let videosPlayedNow = useMemo(()=>[], [])
+    let videosPlayedNow = useMemo(() => [], [])
 
     const eventHandler = (event) => {
         currentVideo = videos[event.object.name]

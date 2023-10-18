@@ -11,9 +11,11 @@ const Avatar = (props) => {
     const { actions } = useAnimations(animations, avatarRef);
 
     useEffect(() => {
-        const action = actions.Idle
-        action.play()
-    }, [])
+        if(actions){
+            const action = actions.Idle
+            action.play()
+        }
+    }, [actions])
 
     url = props.urlAvatar
 
