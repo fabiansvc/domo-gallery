@@ -7,7 +7,7 @@ const RoutesDomoGallery = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route  path="/" element={<Home />} />
                 <Route path="/domo-gallery" element={<World />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>

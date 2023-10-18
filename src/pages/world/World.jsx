@@ -9,12 +9,13 @@ import Cursor from "./components/Cursor";
 import keysMovements from "../../utils/keys-movements";
 import { Center, KeyboardControls, PointerLockControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
-import Logout from "../../components/Logout/Logout";
+import { Suspense, useEffect, useRef } from "react";
 import Instructive from "../../components/Instructive/Instructive";
 import { Perf } from "r3f-perf";
 
 const World = () => {
+    const pointerLockControlsRef = useRef();
+
     const cameraSettings = {
         fov: 60,
         near: 0.1,
@@ -25,7 +26,6 @@ const World = () => {
 
     return <>
         <Suspense fallback={<Instructive />}>
-            <Logout />
             <Cursor />
             <KeyboardControls
                 map={keysMovements}>
@@ -33,12 +33,10 @@ const World = () => {
                     className='canvas'
                     camera={cameraSettings}
                 >
-                    {/* <Perf position={"top-left"} /> */}
+                    <Perf position={"top-left"} />
                     <Environments />
-                    <PointerLockControls />
+                    <PointerLockControls ref={pointerLockControlsRef}/>
                     <Center>
-                        <Domo />
-                        <Gallery />
                         <Avatar urlAvatar={"/static/model/avatar/avatar1.glb"} position={[0, 0, 1]} rotation={[0, Math.PI / 3, 0]} />
                         <Avatar urlAvatar={"/static/model/avatar/avatar2.glb"} position={[0, 0, -1]} rotation={[0, (3 * Math.PI) / 4, 0]} />
                         <Avatar urlAvatar={"/static/model/avatar/avatar3.glb"} position={[-18, 0, 1]} rotation={[0, Math.PI / 4, 0]} />
@@ -47,6 +45,8 @@ const World = () => {
                             <PhysicsBodies />
                             <Player />
                         </Physics>
+                        <Domo />
+                        <Gallery />
                     </Center>
                 </Canvas>
             </KeyboardControls>

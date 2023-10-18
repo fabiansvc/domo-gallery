@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import TitleEISC from "../../components/TitleEISC/TitleEISC"
 import "./home.css"
 
 const Home = () => {
+    const navigate = useNavigate();
+    const onHandleStart = () => navigate("/domo-gallery");
     const isDesktop = () => {
         if (/Android|webOS|iPad|Tablet|PlayBook|Kindle|Windows Phone|IEMobile|Surface|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari|Windows Phone|SymbianOS/i.test(navigator.userAgent)) {
             return (
@@ -14,7 +17,7 @@ const Home = () => {
                 <button
                     role="button"
                     className="button-start"
-                    onClick={() => window.location.href = "/domo-gallery"}
+                    onClick={onHandleStart}
                 >
                     Start
                 </button>
