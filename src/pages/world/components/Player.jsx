@@ -35,7 +35,7 @@ const Player = () => {
 
     useFrame((state, delta) => {
         const { forward, backward, left, right } = get()
-        if (!isCollide && (forward || backward || left || right)) {
+        if (rigidBody.current && !isCollide && (forward || backward || left || right)) {
             state.camera.getWorldDirection(walkDirection)
             walkDirection.y = 0
             walkDirection.normalize()
