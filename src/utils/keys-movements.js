@@ -1,3 +1,5 @@
+"use strict"
+
 const keyboardControls = [
     { name: "forward", keys: ["ArrowUp", "w", "W"] },
     { name: "backward", keys: ["ArrowDown", "s", "S"] },
