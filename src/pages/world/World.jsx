@@ -33,7 +33,7 @@ const World = () => {
                     className='canvas'
                     camera={cameraSettings}
                 >
-                    <Perf position={"top-left"} />
+                    {/* <Perf position={"top-left"} /> */}
                     <Environments />
                     <PointerLockControls ref={pointerLockControlsRef}/>
                     <Center>
