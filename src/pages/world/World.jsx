@@ -12,6 +12,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Logout from "../../components/Logout/Logout";
 import Instructive from "../../components/Instructive/Instructive";
+import { Perf } from "r3f-perf";
 
 const World = () => {
     const cameraSettings = {
@@ -32,6 +33,7 @@ const World = () => {
                     className='canvas'
                     camera={cameraSettings}
                 >
+                    {/* <Perf position={"top-left"} /> */}
                     <Environments />
                     <PointerLockControls />
                     <Center>
