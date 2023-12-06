@@ -35,7 +35,7 @@ export default function World() {
                     <Avatar urlAvatar={"/static/model/avatar/avatar2.glb"} position={[0, 0, -1]} rotation={[0, (3 * Math.PI) / 4, 0]} />
                     <Avatar urlAvatar={"/static/model/avatar/avatar3.glb"} position={[-18, 0, 1]} rotation={[0, Math.PI / 4, 0]} />
                     <Avatar urlAvatar={"/static/model/avatar/avatar4.glb"} position={[-15, 0, -6]} rotation={[0, (5 * Math.PI) / 6, 0]} />
-                    <Physics debug={true}>
+                    <Physics debug={false}>
                         <Domo domoRef={domoRef} />
                         <Gallery galleryRef={galleryRef} />
                         {domoRef && galleryRef ? <Player /> : null}
