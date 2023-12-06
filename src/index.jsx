@@ -1,13 +1,14 @@
-import './index.css'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Experience from './Experience'
-import React from 'react'
+import './index.css'
+import { Canvas } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
+import { Perf } from 'r3f-perf'
 
-const root = ReactDOM.createRoot(document.querySelector('#root'))
-
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Experience />
+        <Experience/>
     </React.StrictMode>
 )
 

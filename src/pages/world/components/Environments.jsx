@@ -1,12 +1,9 @@
-import { Environment, Sky, Stars } from "@react-three/drei"
+import { Environment, Sky } from "@react-three/drei"
 
-const Environments = () => {
-
+export default function Environments() {
     return <>
         <ambientLight intensity={0.5} />
-        <Environment preset="forest"/>
-        <Sky />
+        <Sky /> 
+       <Environment preset="forest" background={false}/>
     </>
 }
-
-export default Environments;

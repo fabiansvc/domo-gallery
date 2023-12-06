@@ -1,98 +1,88 @@
-import { useKeyboardControls } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
-import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import { useRef, useState } from "react"
-import { Vector3 } from "three"
+import React, { useRef } from 'react';
+import { useThree, useFrame } from '@react-three/fiber';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
+import { Quaternion, Vector3 } from 'three';
+import { useKeyboardControls } from '@react-three/drei';
 
-const Player = () => {
-    const rigidBody = useRef()
-    const [isCollide, setIsCollide] = useState(false);
-    const [rigidNameCollide, setRigidNameCollide] = useState("");
+export default function Player() {
+    const avatarBodyRef = useRef();
+    const [, get] = useKeyboardControls();
+    const { camera } = useThree();
+    const desiredDistance = 0;
+    const velocity = 5;
+    const walkDirection = new Vector3();
+    const rotateAngle = new Vector3(0, 1, 0);
+    let rotateQuarternion = new Quaternion();
 
-    // Temporary data
-    let walkDirection = new Vector3()
-    let rotateAngle = new Vector3(0, 1, 0)
+    const getDirectionOffset = (forward, backward, left, right) => {
+        if (forward && left) return Math.PI / 4;
+        if (forward && right) return -Math.PI / 4;
+        if (backward && left) return 3 * Math.PI / 4;
+        if (backward && right) return -3 * Math.PI / 4;
+        if (forward) return 0;
+        if (backward) return Math.PI;
+        if (left) return Math.PI / 2;
+        if (right) return -Math.PI / 2;
+        return 0;
+    };
 
-    // Constants
-    const walkVelocity = 2
-    let moveX, moveY, moveZ = 0
-    const moveCamera = 0.5
+    const move = (delta) => {
+        const { forward, backward, left, right } = get();
+        if (forward || backward || left || right) {
+            const directionOffset = getDirectionOffset(forward, backward, left, right);
+            const currentTranslation = avatarBodyRef.current.translation();
 
-    // Diagonal movement angle offset
-    const directionOffset = (forward, backward, left, right) => {
-        if (forward) {
-            return 0
-        } else if (backward) {
-            return Math.PI
-        } else if (left) {
-            return Math.PI / 2
-        } else if (right) {
-            return -Math.PI / 2
+            const angleYCameraDirection = Math.atan2(
+                camera.position.x - currentTranslation.x,
+                camera.position.z - currentTranslation.z
+            );
+
+            rotateQuarternion.setFromAxisAngle(rotateAngle, angleYCameraDirection + Math.PI + directionOffset);
+
+            camera.getWorldDirection(walkDirection);
+            walkDirection.y = 0;
+            walkDirection.normalize();
+            walkDirection.applyAxisAngle(rotateAngle, directionOffset);
+
+            const moveX = walkDirection.x * velocity * delta;
+            const moveZ = walkDirection.z * velocity * delta;
+            const moveY = 0;
+
+            const newPosition = new Vector3(
+                currentTranslation.x + moveX,
+                currentTranslation.y,
+                currentTranslation.z + moveZ
+            );
+
+            avatarBodyRef.current.setTranslation({
+                x: newPosition.x,
+                y: newPosition.y,
+                z: newPosition.z,
+            }, true);
+
+            avatarBodyRef.current.setRotation(new Quaternion(0, avatarBodyRef.current.rotation().y, 0, 1).normalize());
+
+            camera.position.add(new Vector3(moveX, moveY, moveZ));
+            const avatarPosition = new Vector3(newPosition.x, newPosition.y + 1, newPosition.z);
+            const cameraPosition = new Vector3().copy(camera.position);
+            const direction = cameraPosition.sub(avatarPosition).normalize();
+            const newCameraPosition = avatarPosition.add(direction.multiplyScalar(desiredDistance));
+            camera.position.copy(newCameraPosition);
         }
+        const pressed = get().back
     }
 
-    const [, get] = useKeyboardControls()
-
     useFrame((state, delta) => {
-        const { forward, backward, left, right } = get()
-        if (rigidBody.current && !isCollide && (forward || backward || left || right)) {
-            state.camera.getWorldDirection(walkDirection)
-            walkDirection.y = 0
-            walkDirection.normalize()
-            walkDirection.applyAxisAngle(rotateAngle, directionOffset(forward, backward, left, right))
-
-            const velocity = walkVelocity
-
-            moveX = walkDirection.x * velocity * delta
-            moveY = walkDirection.y * velocity * delta
-            moveZ = walkDirection.z * velocity * delta
-
-            state.camera.position.x += moveX
-            state.camera.position.y += moveY
-            state.camera.position.z += moveZ
-
-            rigidBody.current.setTranslation(state.camera.position, true)
-        } else if (isCollide) {
-            switch (rigidNameCollide) {
-                case "rigidPosAxisX":
-                    rigidBody.current.setTranslation([state.camera.position.x -= moveCamera, state.camera.position.y, state.camera.position.z], true)
-                    break;
-                case "rigidNegAxisX":
-                    rigidBody.current.setTranslation([state.camera.position.x += moveCamera, state.camera.position.y, state.camera.position.z], true)
-                    break;
-                case "rigidPosAxisZ":
-                    rigidBody.current.setTranslation([state.camera.position.x, state.camera.position.y, state.camera.position.z -= moveCamera], true)
-                    break;
-                case "rigidNegAxisZ":
-                    rigidBody.current.setTranslation([state.camera.position.x, state.camera.position.y, state.camera.position.z += moveCamera], true)
-                    break;
-                default:
-                    break;
-            }
-            setIsCollide(false)
-        }
-    })
+        move(delta);
+    });
 
     return (
         <RigidBody
-            ref={rigidBody}
-            position={[1, 0, 0]}
-            gravityScale={1}
+            ref={avatarBodyRef}
             restitution={0}
-            friction={0.7}
-            onCollisionEnter={({ other }) => {
-                setIsCollide(true)
-                if (other.rigidBodyObject)
-                    setRigidNameCollide(other.rigidBodyObject.name)
-
-            }}
-            onCollisionExit={() => {
-                setIsCollide(false)
-            }}
+            position = {[camera.position.x, 1.5, camera.position.z]}
         >
-            <CuboidCollider mass={0} args={[0.1, 0.1, 0.1]} />
+            <CuboidCollider args={[0.5, 0.4, 0.5]} />
         </RigidBody>
-    )
-}
-
-export default Player;
+    );
+};
