@@ -1,10 +1,26 @@
-"use strict"
+'use strict'
 
-const keyboardControls = [
-    { name: "forward", keys: ["ArrowUp", "w", "W"] },
-    { name: "backward", keys: ["ArrowDown", "s", "S"] },
-    { name: "left", keys: ["ArrowLeft", "a", "A"] },
-    { name: "right", keys: ["ArrowRight", "d", "D"] },
-]
+import { useMemo } from "react";
 
-export default keyboardControls;
+const useMovements = () => {
+  const MOVEMENTS = {
+    forward: "forward",
+    backward: "backward",
+    leftward: "leftward",
+    rightward: "rightward",
+  };
+
+  const map = useMemo(
+    () => {
+        return [
+          { name: MOVEMENTS.forward, keys: ["ArrowUp", "KeyW"] },
+          { name: MOVEMENTS.backward, keys: ["ArrowDown", "KeyS"] },
+          { name: MOVEMENTS.leftward, keys: ["ArrowLeft", "KeyA"] },
+          { name: MOVEMENTS.rightward, keys: ["ArrowRight", "KeyD"] }
+        ]
+    },);
+
+  return map;
+};
+
+export default useMovements;

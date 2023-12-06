@@ -1,6 +1,6 @@
 {
   "name": "domo-gallery",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.jsx",
   "scripts": {
     "dev": "react-scripts start",
@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.89.0",
     "@react-three/fiber": "^8.15.11",
     "@react-three/rapier": "^1.1.2",
+    "ecctrl": "^1.0.50",
     "r3f-perf": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
