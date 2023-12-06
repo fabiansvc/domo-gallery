@@ -24,7 +24,7 @@ export default function World() {
             <KeyboardControls map={keysMovements}>
                 <Cursor />
                 <Canvas camera={cameraSettings} style={{ height: "100vh", width: "100vw" }} >
-                    <Perf position={"top-left"} />
+                    {/* <Perf position={"top-left"} /> */}
                     <Environments />
                     <PointerLockControls />
                         <Avatar urlAvatar={"/static/model/avatar/avatar1.glb"} position={[0, 0, 1]} rotation={[0, Math.PI / 3, 0]} />
