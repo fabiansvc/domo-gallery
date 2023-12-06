@@ -7,13 +7,13 @@ import { useKeyboardControls } from '@react-three/drei';
 export default function Player() {
     const avatarBodyRef = useRef();
     const [, get] = useKeyboardControls();
-    const { camera } = useThree();
+    const {camera } = useThree();
     const desiredDistance = 0;
     const velocity = 5;
     const walkDirection = new Vector3();
     const rotateAngle = new Vector3(0, 1, 0);
     let rotateQuarternion = new Quaternion();
-
+    
     const getDirectionOffset = (forward, backward, left, right) => {
         if (forward && left) return Math.PI / 4;
         if (forward && right) return -Math.PI / 4;

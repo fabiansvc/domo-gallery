@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei"
 import { RigidBody } from "@react-three/rapier"
 import { useMemo, useRef, useState } from "react"
 
-export default function Gallery() {
+export default function Gallery({galleryRef}) {
     const poster1Ref = useRef()
     const poster2Ref = useRef()
     const poster3Ref = useRef()
@@ -113,7 +113,7 @@ export default function Gallery() {
     }
 
     return <>
-        <group >
+        <group ref={galleryRef}>
             <group>
             <RigidBody colliders="trimesh" type="fixed" friction={0.7}>
                 <group>

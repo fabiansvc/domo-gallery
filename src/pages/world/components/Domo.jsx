@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useState, useEffect } from "react";
 
-export default function Domo() {
+export default function Domo({domoRef}) {
     const { nodes, materials } = useGLTF('/static/model/domo/domo.glb')
     const videoUrl = "https://storage.googleapis.com/domogallery/video180.mp4"
 
@@ -20,7 +20,7 @@ export default function Domo() {
     }, []);
 
     return (
-        <group dispose={null}>
+        <group ref={domoRef} dispose={null}>
             <RigidBody colliders="trimesh" type="fixed">
                 <group>
                     <mesh
