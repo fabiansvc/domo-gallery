@@ -3,7 +3,8 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 
 let url = ""
 
-const Avatar = (props) => {
+export default function (props) {
+    url = props.urlAvatar
     const avatarRef = useRef()
     const { nodes, materials } = useGLTF(props.urlAvatar);
     const type = nodes.Wolf3D_Avatar.geometry.boundingBox.max.y > 1.80 ? "man" : "woman"
@@ -17,10 +18,8 @@ const Avatar = (props) => {
         }
     }, [actions])
 
-    url = props.urlAvatar
-
     return (
-        <group ref={avatarRef} {...props} dispose={null}>
+        <group ref={avatarRef} {...props} dispose={null} >
             <group name="Armature">
                 <primitive object={nodes.Hips} />
                 <skinnedMesh
@@ -42,6 +41,5 @@ const Avatar = (props) => {
         </group>
     );
 }
-export default Avatar;
 
 useGLTF.preload(url);

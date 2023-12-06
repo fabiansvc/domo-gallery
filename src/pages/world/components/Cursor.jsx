@@ -1,11 +1,7 @@
-const Cursor = () => {
+export default function Cursor() {
     return (
-        <main className="app"  >
-            <section className='hero'>
-                <img className="cursor" src={"/static/textures/cursor/cursor.png"} alt="cursor" />
-            </section>
-        </main>
+        <div className="container-cursor">
+            <img className="cursor" src={"/static/textures/cursor/cursor.png"} alt="cursor" />
+        </div>
     )
 }
-
-export default Cursor;

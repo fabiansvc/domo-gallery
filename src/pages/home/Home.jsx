@@ -5,7 +5,8 @@ import "./home.css"
 const Home = () => {
     const navigate = useNavigate();
     const onHandleStart = () => navigate("/domo-gallery");
-    const isDesktop = () => {
+
+    const Start = () => {
         if (/Android|webOS|iPad|Tablet|PlayBook|Kindle|Windows Phone|IEMobile|Surface|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari|Windows Phone|SymbianOS/i.test(navigator.userAgent)) {
             return (
                 <p className="note">
@@ -38,7 +39,7 @@ const Home = () => {
                     <br />
                     Paola Johanna Rodriguez C. Ph.D
                 </span>
-                {isDesktop()}
+                <Start />
             </div>
         </div>
     )

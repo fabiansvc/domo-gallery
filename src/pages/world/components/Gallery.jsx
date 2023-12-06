@@ -1,7 +1,8 @@
 import { useGLTF } from "@react-three/drei"
+import { RigidBody } from "@react-three/rapier"
 import { useMemo, useRef, useState } from "react"
 
-export default function Gallery() {
+export default function Gallery({galleryRef}) {
     const poster1Ref = useRef()
     const poster2Ref = useRef()
     const poster3Ref = useRef()
@@ -13,7 +14,6 @@ export default function Gallery() {
     const poster9Ref = useRef()
     const poster10Ref = useRef()
 
-    //Carga modelo
     const { nodes, materials } = useGLTF('/static/model/gallery/gallery.glb')
 
     const videoUrl = [
@@ -29,7 +29,6 @@ export default function Gallery() {
         "https://storage.googleapis.com/domogallery/video10.mp4"
     ]
 
-    // Carga Videos
     const videos = useMemo(() => [], [])
 
     videoUrl.map((url, index) => {
@@ -114,8 +113,9 @@ export default function Gallery() {
     }
 
     return <>
-        <group >
+        <group ref={galleryRef}>
             <group>
+            <RigidBody colliders="trimesh" type="fixed" friction={0.7}>
                 <group>
                     <mesh
                         geometry={nodes.TopGallery_1.geometry}
@@ -140,6 +140,7 @@ export default function Gallery() {
                         material={materials.frameMaterial}
                     />
                 </group>
+            </RigidBody>
                 <mesh
                     name="video1"
                     geometry={nodes.Video1.geometry}

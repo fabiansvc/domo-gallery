@@ -1,10 +1,19 @@
+import { Canvas } from "@react-three/fiber";
 import "./not-found.css";
+import { Text } from "@react-three/drei";
+import { Perf } from "r3f-perf";
 
 const NotFound = () => {
     return (
         <div className="container-not-found">
-            <h1>404</h1>
-            <h2>Not Found</h2>
+            <Canvas>
+                <Perf position={"top-left"} />
+                <Text
+                    color={"#ffffff"}
+                >
+                    404 Not Found
+                </Text>
+            </Canvas>
         </div>
     )
 };
