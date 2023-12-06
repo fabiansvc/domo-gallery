@@ -21,7 +21,7 @@ export default function Domo({domoRef}) {
 
     return (
         <group ref={domoRef} dispose={null}>
-            <RigidBody colliders="trimesh" type="fixed">
+            <RigidBody colliders="trimesh" type="fixed" friction={0.7}>
                 <group>
                     <mesh
                         geometry={nodes.Domo_1.geometry}

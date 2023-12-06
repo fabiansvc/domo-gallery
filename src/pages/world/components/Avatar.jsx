@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
 
 let url = ""
 
@@ -12,7 +13,7 @@ export default function (props) {
     const { actions } = useAnimations(animations, avatarRef);
 
     useEffect(() => {
-        if(actions){
+        if (actions) {
             const action = actions.Idle
             action.play()
         }
@@ -20,24 +21,28 @@ export default function (props) {
 
     return (
         <group ref={avatarRef} {...props} dispose={null} >
-            <group name="Armature">
-                <primitive object={nodes.Hips} />
-                <skinnedMesh
-                    name="Wolf3D_Avatar"
-                    geometry={nodes.Wolf3D_Avatar.geometry}
-                    material={materials.Wolf3D_Avatar}
-                    skeleton={nodes.Wolf3D_Avatar.skeleton}
-                    morphTargetDictionary={nodes.Wolf3D_Avatar.morphTargetDictionary}
-                    morphTargetInfluences={nodes.Wolf3D_Avatar.morphTargetInfluences}
-                />
-                {nodes.Wolf3D_Avatar_Transparent && (
+            <RigidBody colliders={false} type="fixed">
+                <group name="Armature">
+                    <primitive object={nodes.Hips} />
                     <skinnedMesh
-                        geometry={nodes.Wolf3D_Avatar_Transparent.geometry}
-                        material={materials.Wolf3D_Avatar_Transparent}
-                        skeleton={nodes.Wolf3D_Avatar_Transparent.skeleton}
+                        name="Wolf3D_Avatar"
+                        geometry={nodes.Wolf3D_Avatar.geometry}
+                        material={materials.Wolf3D_Avatar}
+                        skeleton={nodes.Wolf3D_Avatar.skeleton}
+                        morphTargetDictionary={nodes.Wolf3D_Avatar.morphTargetDictionary}
+                        morphTargetInfluences={nodes.Wolf3D_Avatar.morphTargetInfluences}
                     />
-                )}
-            </group>
+                    {nodes.Wolf3D_Avatar_Transparent && (
+                        <skinnedMesh
+                            geometry={nodes.Wolf3D_Avatar_Transparent.geometry}
+                            material={materials.Wolf3D_Avatar_Transparent}
+                            skeleton={nodes.Wolf3D_Avatar_Transparent.skeleton}
+                        />
+                    )}
+                    <CuboidCollider args={[0.4, 1.8, 0.4]}/>
+                </group>
+            </RigidBody>
+
         </group>
     );
 }
